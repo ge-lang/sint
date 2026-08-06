@@ -1,49 +1,63 @@
-# SINT — Corporate Web Platform & Integrated E-Commerce System
+# EVVA — Corporate Web Platform & Smart Shop
 
-A full-stack, multi-page corporate web application integrated with a comprehensive e-commerce system and a custom administrative backoffice dashboard. Developed as part of an intensive Web Development training program to simulate real-world B2B and B2C operational workflows.
+A PHP/MySQL corporate website with service pages, customer and partner onboarding, a smart shop, authentication, orders, and an administrative backoffice. This is a modernized version of an older training project.
 
-## 🚀 Live Phase
-*This repository is currently undergoing an upgrading and modernizing phase to implement advanced data security, deployment protocols, and refactored state management.*
+## Live Demo
+
+[Open the EVVA website](https://evasive-skier-ended.ngrok-free.dev/gts_index.php)
+
+The demo is served through a temporary ngrok tunnel and may be unavailable when the local Docker environment is stopped.
 
 ---
 
 ## 🛠️ Tech Stack & Architecture
 
-* **Backend & Server-side Logic:** PHP (Session management, authentication, multi-step business workflows)
-* **Database & Relational Modeling:** MySQL (Custom relational schema design, query optimization)
-* **Frontend & UI/UX:** HTML5, CSS3 / SCSS, JavaScript, Bootstrap (Fully responsive interface)
-* **API Integration:** PayPal REST API (Payment execution and authentication concepts)
+* **Backend:** PHP 8.1 with session-based authentication and server-side workflows
+* **Database:** MySQL 8 with the schema in `sint.sql`
+* **Frontend:** HTML5, CSS3, JavaScript, Bootstrap and Owl Carousel
+* **Payments:** PayPal REST API in sandbox mode
+* **Runtime:** Docker Compose with Apache, PHP and MySQL
 
 ---
 
 ## 📊 Core Features & System Modules
 
-### 1. Corporate Web Platform & Client Onboarding
-* **Dynamic Service Showcases:** Dedicated modules for company services and commercial tariff plans (`diensten.php`, `tarieven.php`).
-* **Interactive Client Onboarding:** Structured registration and onboarding forms tailored to capture precise lead data (`klant_worden.php`, `partner_worden.php`).
+### 1. Corporate website and onboarding
+* Service pages for telecom, internet, energy, solar panels, smart home and smart shop solutions.
+* Customer and partner request forms in `klant_worden.php` and `partner_worden.php`.
+* Dutch and English content via the `lang` query parameter.
 
-### 2. Full-Stack E-Commerce System
-* **Catalog & Product Management:** Dynamic filtering by categories and brands (`shop_categories.php`, `shop_brands.php`).
-* **Cart & Checkout Lifecycle:** Secure client-side shopping cart management, persistence of cart states, and automated total calculation (`shopping-cart.php`, `checkout.php`).
-* **Secure Order Tracking:** Personalized customer portals to view transaction history and active delivery statuses (`my-orders.php`).
+### 2. Smart shop
+* Product catalog with category and brand filtering.
+* Product details, reviews, shopping cart and checkout flow.
+* Customer order history in `my-orders.php`.
 
-### 3. Database Engineering & System Analysis
-* **Relational Data Model:** Backed by a structured database schema (`sint.sql`) optimizing relationships between users, products, categories, orders, and logs.
-* **Security & Authentication:** Implemented secure user authentication layers (login/register/logout), server-side input validation, and secure session isolation.
+### 3. Administration
+* The `/admin` area manages users, roles, services, categories, brands, products, team members, comments and orders.
+* The database schema contains the relationships for users, products, services, categories, orders and order items.
 
-### 4. Custom Administrative Backoffice (`/admin`)
-* **Content & Catalog Moderation:** Private dashboard allowing administrators to dynamically manage product inventories, review user comments (`product_comment.php`), and execute content updates.
-* **Order Processing Control:** Centralized panel for tracking company orders and handling client requests.
+## Local setup with Docker
 
----
-
-## 🔧 Database Setup & Installation
-
-1. Clone the repository to your local server directory (e.g., `www/` or `htdocs/`):
+1. Clone the repository:
    ```bash
-   git clone https://github.com
+   git clone https://github.com/ge-lang/sint.git
+   cd sint
    ```
-2. Import the relational database schema into your MySQL server using the provided SQL file:
-   * File: `sint.sql`
-3. Configure your server-side database connection parameters within the configuration files (located in the `includes/` directory).
-4. Launch your local server (Apache/Nginx) and navigate to `index.php`.
+
+2. Create the environment file:
+   ```bash
+   cp .env.example .env
+   ```
+
+3. Add the PayPal sandbox credentials to `.env`, then start the project:
+   ```bash
+   docker compose up -d --build
+   ```
+
+4. Open the site at [http://localhost:8080/gts_index.php](http://localhost:8080/gts_index.php).
+
+The database is initialized from `sint.sql`. phpMyAdmin is available at [http://localhost:8081](http://localhost:8081).
+
+## Repository history
+
+The original training project is preserved in the Git history. The modernized EVVA version is recorded in the `Modernize EVVA site and Docker setup` commit.
