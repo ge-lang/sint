@@ -9,7 +9,7 @@
                 <div class="single_widget_area">
                     <!-- Logo -->
                     <div class="footer-logo mr-50 w-25">
-                        <a href="gts_index.php"><img class="evva-mark" src="img/logo_evva_hot.svg" alt="EVVA"></a>
+                        <a href="home.php"><img class="evva-mark" src="img/logo_evva_hot.svg" alt="EVVA"></a>
                     </div>
                     <!-- Copywrite Text -->
                     <p class="copywrite"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
@@ -26,7 +26,7 @@
                             <div class="collapse navbar-collapse" id="footerNavContent">
                                 <ul class="navbar-nav ml-auto">
                                     <li class="nav-item active">
-                                        <a class="nav-link" href="gts_index.php"><?php echo evva_text('home'); ?></a>
+                                        <a class="nav-link" href="home.php"><?php echo evva_text('home'); ?></a>
                                     </li>
                                     <li class="nav-item footer-services-item">
                                         <a class="nav-link" href="diensten.php"><?php echo evva_text('services'); ?></a>

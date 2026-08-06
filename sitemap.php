@@ -7,7 +7,7 @@ if ($site_url === '') {
 }
 
 $pages = array(
-    'gts_index.php',
+    'home.php',
     'diensten.php',
     'over.php',
     'tarieven.php',
@@ -25,4 +25,3 @@ foreach ($pages as $page) {
     echo '<url><loc>' . htmlspecialchars($site_url . '/' . $page, ENT_XML1, 'UTF-8') . '</loc></url>';
 }
 echo '</urlset>';
-

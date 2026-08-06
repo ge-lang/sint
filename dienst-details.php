@@ -71,7 +71,7 @@ if (($evva_lang ?? 'nl') === 'en') {
 }
 
 include('includes/header.php');
-include('includes/head_gts.php');
+include('includes/site_header.php');
 ?>
 
 <main id="main">

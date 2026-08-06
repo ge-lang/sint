@@ -4,7 +4,7 @@ A PHP/MySQL corporate website with service pages, customer and partner onboardin
 
 ## Live Demo
 
-[Open the EVVA website](https://evasive-skier-ended.ngrok-free.dev/gts_index.php)
+[Open the EVVA website](https://evasive-skier-ended.ngrok-free.dev/home.php)
 
 The demo is served through a temporary ngrok tunnel and may be unavailable when the local Docker environment is stopped.
 
@@ -54,7 +54,7 @@ The demo is served through a temporary ngrok tunnel and may be unavailable when 
    docker compose up -d --build
    ```
 
-4. Open the site at [http://localhost:8080/gts_index.php](http://localhost:8080/gts_index.php).
+4. Open the site at [http://localhost:8080/home.php](http://localhost:8080/home.php).
 
 The database is initialized from `sint.sql`. phpMyAdmin is available at [http://localhost:8081](http://localhost:8081).
 

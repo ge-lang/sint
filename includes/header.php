@@ -8,12 +8,12 @@ if (isset($_GET['lang']) && in_array($_GET['lang'], array('nl', 'en'), true)) {
 $evva_lang = $_SESSION['evva_lang'] ?? 'nl';
 $evva_lang_query = $_GET;
 $evva_lang_query['lang'] = 'en';
-$evva_en_url = basename($_SERVER['SCRIPT_NAME'] ?? 'gts_index.php') . '?' . http_build_query($evva_lang_query);
+$evva_en_url = basename($_SERVER['SCRIPT_NAME'] ?? 'home.php') . '?' . http_build_query($evva_lang_query);
 $evva_lang_query['lang'] = 'nl';
-$evva_nl_url = basename($_SERVER['SCRIPT_NAME'] ?? 'gts_index.php') . '?' . http_build_query($evva_lang_query);
+$evva_nl_url = basename($_SERVER['SCRIPT_NAME'] ?? 'home.php') . '?' . http_build_query($evva_lang_query);
 
 $seo_pages = array(
-    'gts_index.php' => array(
+    'home.php' => array(
         'title' => 'EVVA | Telecom, energie en slimme technologie',
         'description' => 'Vergelijk telecom, internet, energie en slimme technologie. EVVA helpt consumenten en zelfstandigen in België met een passende keuze.'
     ),

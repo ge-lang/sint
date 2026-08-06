@@ -35,7 +35,7 @@
 
             <nav id="nav-menu-container">
                 <ul class="nav-menu">
-                    <li class="menu-active"><a href="gts_index.php"><?php echo evva_text('home'); ?></a></li>
+                    <li class="menu-active"><a href="home.php"><?php echo evva_text('home'); ?></a></li>
                     <li class="menu-has-children">
                         <a href="diensten.php" aria-haspopup="true"><?php echo evva_text('services'); ?></a>
                         <ul>

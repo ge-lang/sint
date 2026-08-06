@@ -1,6 +1,6 @@
 <?php
 include('includes/header.php');
-include('includes/head_gts.php');
+include('includes/site_header.php');
 $is_en = (($evva_lang ?? 'nl') === 'en');
 ?>
 

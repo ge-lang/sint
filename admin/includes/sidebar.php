@@ -124,7 +124,7 @@
         <div class="sidebar-brand-text mx-3">EVVA-Shop</div>
     </a>
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../gts_index.php">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../home.php">
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-home"></i>
         </div>

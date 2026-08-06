@@ -4,7 +4,7 @@ include ('includes/header.php');
 
 
 <?php
-include('includes/head_gts.php');
+include('includes/site_header.php');
 ?>
 
 

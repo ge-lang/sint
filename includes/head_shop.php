@@ -5,8 +5,8 @@ if (isset($_GET['status']) && $_GET['status'] == TRUE) {
     $message = 'Your payment transaction has been successfully completed.';
 }
 
-// The public top navigation lives in head_gts.php and is shared by every page.
-include('head_gts.php');
+// The public top navigation is shared by every page.
+include('site_header.php');
 ?>
 
 
