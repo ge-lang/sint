@@ -23,6 +23,7 @@ class Session
     }
     public function login($user){
         if($user){
+            session_regenerate_id(true);
             $this->user_id = $_SESSION['user_id'] = $user->id;
             $this->signed_in = true;
             $this->role = $_SESSION['role'] = $user->role;

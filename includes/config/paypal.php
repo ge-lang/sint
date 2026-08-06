@@ -8,12 +8,12 @@
  *  finally make sure that APP URL matcher to your application url
  */
 
-define('MODE', 'sandbox');
-define('CURRENCY', 'USD');
-define('APP_URL', 'http://localhost/sint/');
+define('MODE', getenv('PAYPAL_MODE') ?: 'sandbox');
+define('CURRENCY', getenv('PAYPAL_CURRENCY') ?: 'USD');
+define('APP_URL', getenv('PAYPAL_APP_URL') ?: 'http://localhost:8080');
 
-define("PayPal_CLIENT_ID", "AQBYg_wghJBEAY6PDcjJ6a3u0goMm7F0JbuNJ_p4QzwVgH75AQ6Wbg1KMR7XMdiRtnGzmr7HvNHftK3M");
-define("PayPal_SECRET", "EN8g3K4m5IXCaSQcw4yLjAZFBOSXGh8OKnJU6REJv6WlYWuhhDOtTIsu7VVKyob0ikqh-3FSN32Nsmwj");
-define("PayPal_BASE_URL", "https://api.sandbox.paypal.com/v1/");
-
+define('PayPal_CLIENT_ID', getenv('PAYPAL_CLIENT_ID') ?: '');
+define('PayPal_SECRET', getenv('PAYPAL_SECRET') ?: '');
+define('PayPal_BASE_URL', rtrim(getenv('PAYPAL_BASE_URL') ?: 'https://api-m.sandbox.paypal.com/v1/', '/') . '/');
+define('PayPal_API_BASE_URL', preg_replace('#/v1/$#', '/', PayPal_BASE_URL));
 ?>

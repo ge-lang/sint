@@ -80,18 +80,18 @@ CREATE TABLE IF NOT EXISTS `categories` (
 --
 
 INSERT INTO `categories` (`id`, `title`, `sort_order`, `status`, `foto`, `type`, `size`) VALUES
-(1, 'Apple Fun', 0, 0, 'apple_p.jpg', '', 0),
-(2, 'Smart Home', 0, 0, 'smarthome_.jpg', '', 0),
-(3, 'Game Zone', 0, 0, 'games_.jpg', '', 0),
-(5, 'Device', 0, 0, 'home_d.jpg', '', 0),
-(6, 'Smartphone', 0, 0, 'smartphones.jpg', '', 0),
-(7, 'Laptop', 0, 0, 'laptops__.jpg', '', 0),
-(8, 'Game Controller', 0, 0, 'game_contr_.jpg', '', 0),
-(19, 'Tablet', 0, 0, 'tablets_.jpg', '', 0),
-(20, 'iPad', 0, 0, 'iPad_.jpg', '', 0),
-(22, 'Camera', 0, 0, '400-x-500-Pixle-4[1].png', '', 0),
-(23, 'Koptelefoon', 0, 0, 'Logitech-53433057-g332-gallery-2-zoom.png', '', 0),
-(24, 'Robot ', 0, 0, 'Robomow.jpg', '', 0);
+(1, 'Apple Fun', 0, 0, 'category-apple-fun.png', 'image/png', 0),
+(2, 'Smart Home', 0, 0, 'category-smart-home.png', 'image/png', 0),
+(3, 'Game Zone', 0, 0, 'category-game-zone.png', 'image/png', 0),
+(5, 'Device', 0, 0, 'category-device.png', 'image/png', 0),
+(6, 'Smartphone', 0, 0, 'category-smartphone.png', 'image/png', 0),
+(7, 'Laptop', 0, 0, 'category-laptop.png', 'image/png', 0),
+(8, 'Game Controller', 0, 0, 'category-game-controller.png', 'image/png', 0),
+(19, 'Tablet', 0, 0, 'category-tablet.png', 'image/png', 0),
+(20, 'iPad', 0, 0, 'category-ipad.png', 'image/png', 0),
+(22, 'Camera', 0, 0, 'category-camera.png', 'image/png', 0),
+(23, 'Koptelefoon', 0, 0, 'category-headphones.png', 'image/png', 0),
+(24, 'Robot ', 0, 0, 'category-robot.png', 'image/png', 0);
 
 -- --------------------------------------------------------
 
@@ -147,12 +147,12 @@ CREATE TABLE IF NOT EXISTS `diensten` (
 --
 
 INSERT INTO `diensten` (`id`, `title`, `foto`, `type`, `size`) VALUES
-(1, 'Telecom', 'svyaz_min.jpg', '', 0),
-(2, 'Internet', 'net.jpg', '', 0),
-(3, 'Energie', 'wind-turbines-in-a-field-with-the-sun-setting-in-the-background.jpg', '', 0),
-(4, 'Zonnenpanelen', 'Renewable-Solar-Energy.jpg', '', 0),
-(5, 'Smart Home', 'smart_home.jpg', '', 0),
-(6, 'Smart Shop', 'appleproductlineup.jpg', '', 0);
+(1, 'Telecom', 'telecom-evva.png', 'image/png', 0),
+(2, 'Internet', 'internet-evva.png', 'image/png', 0),
+(3, 'Energie', 'energy-evva.png', 'image/png', 0),
+(4, 'Zonnenpanelen', 'solar-evva.png', 'image/png', 0),
+(5, 'Smart Home', 'smart-home-evva.png', 'image/png', 0),
+(6, 'Smart Shop', 'smart-shop-evva.png', 'image/png', 0);
 
 -- --------------------------------------------------------
 
@@ -278,15 +278,15 @@ INSERT INTO `products` (`id`, `code`, `categorie_id`, `title`, `availability`, `
 (43, '46', '2', 'Smart security camera', 0, '18', 0, 0, '', '129', 'Nest-Security-Camera.jpg', 'image/jpeg', 76969),
 (44, '51', '8', 'COOBILE Mobile Game Controller', 0, '18', 0, 0, '', '39', '11.jpg', 'image/jpeg', 10517),
 (45, '54', '8', 'Generic Pubg Game Gamepad', 0, '18', 0, 0, '', '35', '12.jpg', 'image/jpeg', 9647),
-(46, '57', '8', 'SEH PUBG Gamepad Wireless Gaming Controller Joystick (W10)', 0, '18', 0, 0, '', '45', '13.jpg', 'image/jpeg', 5695),
-(47, '258', '5', 'AMVR VR Stand,Headset Display Holder for Oculus Rift ', 0, '18', 0, 0, '', '450', '718RsX-fzWL._AC_SX466_.jpg', 'image/jpeg', 12559),
-(48, '194', '5', 'Samsung Gear VR', 0, '1', 0, 0, '', '49', '550x411.jpg', 'image/jpeg', 32792),
-(49, '182', '5', 'Officially Licensed Sony Playstation VR ', 0, '16', 0, 0, '', '35', '51vwQB-qbIL._SX342_.jpg', 'image/jpeg', 6861),
-(50, '395', '1', 'Koop Apple TV HD', 0, '4', 0, 0, '', '159', 'apple-tv-hero-select-201510.jpg', 'image/jpeg', 65439),
-(51, '425', '1', 'Apple Magic Mouse 2', 0, '4', 0, 0, '', '70', '550x154.jpg', 'image/jpeg', 10364),
-(52, '453', '1', 'iPad Pro', 0, '4', 0, 0, '', '899', 'ipad-pro-11-select-wifi-spacegray-202003.png', 'image/png', 284640),
-(54, '', '1', 'iMac', 0, '4', 0, 0, '', '2099', 'imac-27-selection-hero-202008.jpg', 'image/jpeg', 52671),
-(55, '548', '1', 'Homepod', 0, '4', 0, 0, '', '349', '750x750.32001627_10.jpg', 'image/jpeg', 83030);
+(46, '57', '7', 'MacBook Neo 13-inch', 1, '4', 1, 1, 'De nieuwe lichte MacBook Neo met stille werking, helder Liquid Retina-display en lange batterijduur voor werk, studie en onderweg.', '599', 'macbook-neo.png', 'image/png', 0),
+(47, '258', '6', 'iPhone 17 256 GB', 1, '4', 1, 1, 'De nieuwste iPhone met A19-chip, 6,3-inch ProMotion-display, 48MP-camera en sterke batterij voor elke dag.', '799', 'iphone-17.png', 'image/png', 0),
+(48, '194', '23', 'AirPods Pro 3 met USB-C', 1, '4', 1, 1, 'De nieuwste AirPods Pro met actieve ruisonderdrukking, transparantiemodus en comfortabele pasvorm voor onderweg.', '249', 'airpods-pro-3.png', 'image/png', 0),
+(49, '182', '1', 'Apple Watch Series 11 GPS', 1, '4', 1, 1, 'Slim horloge met gezondheidsfuncties, sporttracking, helder display en handige meldingen voor elke dag.', '449', 'apple-watch-series-11.png', 'image/png', 0),
+(50, '395', '1', 'Apple TV 4K Wi-Fi', 1, '4', 1, 1, 'Kijk naar films, series en apps in 4K HDR met vloeiende streaming en eenvoudige bediening via Siri Remote.', '159', 'apple-tv-4k.png', 'image/png', 0),
+(51, '425', '1', 'Apple Magic Mouse USB-C', 1, '4', 1, 1, 'Dunne draadloze muis met Multi-Touch-oppervlak en nauwkeurige bediening voor Mac en iPad.', '70', 'apple-magic-mouse-usbc.png', 'image/png', 0),
+(52, '453', '1', 'iPad Pro 11-inch met M5-chip', 1, '4', 1, 1, 'Krachtige tablet met Ultra Retina XDR-display, M5-prestaties en ondersteuning voor creatief werk en multitasking.', '899', 'ipad-pro-m5.png', 'image/png', 0),
+(54, '527', '1', 'iMac 24-inch met M4-chip', 1, '4', 1, 1, 'Moderne all-in-one desktop met M4-chip, scherp Retina-display en complete werkplek voor thuis of kantoor.', '2099', 'imac-m4.png', 'image/png', 0),
+(55, '548', '1', 'HomePod 2 slimme luidspreker', 1, '4', 1, 1, 'Slimme luidspreker met kamervullend geluid, Siri en eenvoudige bediening van muziek en smart-homeapparaten.', '349', 'homepod-2.png', 'image/png', 0);
 
 -- --------------------------------------------------------
 
@@ -334,10 +334,10 @@ CREATE TABLE IF NOT EXISTS `teamleaders` (
 --
 
 INSERT INTO `teamleaders` (`id`, `naam`, `achternaam`, `positie`, `foto`, `type`, `size`) VALUES
-(5, 'Denis', 'Gergel', 'marketing', 'avatar2.jpg', '', 0),
-(2, 'Pavel', 'Gergel', 'marketing', 'avatar2.jpg', '', 0),
-(3, 'Marina', 'Gergel', 'marketing', 'avatar2.jpg', '', 0),
-(4, 'Yulia', 'Gergel', 'marketing', 'avatar2.jpg', '', 0);
+(5, 'Denis', 'Gergel', 'marketing', 'evva-team-photo.png', 'image/png', 0),
+(2, 'Pavel', 'Gergel', 'marketing', 'evva-team-photo.png', 'image/png', 0),
+(3, 'Marina', 'Gergel', 'marketing', 'evva-team-photo.png', 'image/png', 0),
+(4, 'Yulia', 'Gergel', 'marketing', 'evva-team-photo.png', 'image/png', 0);
 
 -- --------------------------------------------------------
 

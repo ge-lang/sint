@@ -27,6 +27,15 @@ jQuery(document).ready(function($) {
         items: 1
     });
 
+    if ($('#myCarousel').length && $.fn.carousel) {
+        $('#myCarousel').carousel({
+            interval: 6500,
+            pause: 'hover',
+            keyboard: true,
+            wrap: true
+        });
+    }
+
     new WOW().init();
 
     $('.nav-menu').superfish({

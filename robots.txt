@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /includes/
+Disallow: /lib/
+Disallow: /node_modules/
+Disallow: /checkout.php
+Disallow: /shopping-cart.php
+Disallow: /my-orders.php
+Disallow: /login.php
+Disallow: /register.php
+
+Sitemap: /sitemap.php

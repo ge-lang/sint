@@ -16,21 +16,47 @@ class User extends Db_object
     public $user_image;
     public $upload_directory = 'img'.DS.'users';
     public $image_placeholder = 'http://place-hold.it/400x400&text=image';
+    public $tmp_path;
+    public $type;
+    public $size;
+    public $errors = array();
+    public $upload_errors_array = array(
+        UPLOAD_ERR_OK => 'There is no error',
+        UPLOAD_ERR_INI_SIZE => 'The uploaded file exceeds the server limit',
+        UPLOAD_ERR_FORM_SIZE => 'The uploaded file exceeds the form limit',
+        UPLOAD_ERR_NO_FILE => 'No file uploaded',
+        UPLOAD_ERR_PARTIAL => 'The file was partially uploaded',
+        UPLOAD_ERR_NO_TMP_DIR => 'Missing a temporary folder',
+        UPLOAD_ERR_CANT_WRITE => 'Failed to write to disk',
+        UPLOAD_ERR_EXTENSION => 'A PHP extension stopped the upload'
+    );
 
 
 
     public static function verify_user($username, $password){
         global $database;
-        $username = $database->escape_string($username);
-        $password = $database->escape_string($password);
+        $stmt = $database->connection->prepare("SELECT * FROM users WHERE username = ? LIMIT 1");
+        $stmt->bind_param('s', $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        $stmt->close();
 
-        $sql = "SELECT * FROM " . self::$db_table . " WHERE ";
-        $sql .= "username = '{$username}' ";
-        $sql .= "AND password = '{$password}' ";
-        $sql .= "LIMIT 1";
-        $the_result_array = self::find_this_query($sql);
+        if (!$row) {
+            return false;
+        }
 
-        return !empty($the_result_array) ? array_shift($the_result_array) : false;
+        $valid = password_verify($password, $row['password']);
+        if (!$valid && hash_equals((string) $row['password'], (string) $password)) {
+            $valid = true;
+            $new_hash = password_hash($password, PASSWORD_DEFAULT);
+            $upgrade = $database->connection->prepare("UPDATE users SET password = ? WHERE id = ?");
+            $upgrade->bind_param('si', $new_hash, $row['id']);
+            $upgrade->execute();
+            $upgrade->close();
+        }
+
+        return $valid ? self::instantie($row) : false;
     }
     public static function find_all_users(){
         return static::find_this_query("SELECT * FROM " . static::$db_table . " ORDER BY id DESC");
@@ -59,7 +85,12 @@ class User extends Db_object
             $this->errors[] = $this->upload_errors_array[$file['error']];
             return false;
         }else{
-            $this->user_image = basename($file['name']);
+            $upload_error = validate_image_upload($file);
+            if ($upload_error) {
+                $this->errors[] = $upload_error;
+                return false;
+            }
+            $this->user_image = preg_replace('/[^A-Za-z0-9._-]/', '_', basename($file['name']));
             $this->tmp_path = $file['tmp_name'];
             $this->type = $file['type'];
             $this->size=$file['size'];

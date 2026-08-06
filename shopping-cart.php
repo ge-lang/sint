@@ -9,12 +9,6 @@ include('includes/head_shop.php');?>
 <?php
 
 
-/*
-if (empty($_SESSION['user_id'])) {
-    header('Location: index_.php');
-    exit;
-}*/
-
 $app = new PayPal();
 
 if (!empty($_POST['btnAddProduct'])) {
@@ -148,7 +142,7 @@ $total_price += ($product["prijs"]*$product["quantity"]);*/
                         <div class="w-100 text-center"><?php (count($cart) > 0 ? require 'pay-with-paypal.php' : '') ?></div>
                         <?php } else { ?>
                             <div class="form-group">
-                                <p style="color: #f55a22">Your shopping cart is empty you don't have selected any of the product to purchase <a
+                                <p style="color: #8d1fea">Your shopping cart is empty you don't have selected any of the product to purchase <a
                                             href="shop.php">click here</a> to add products. </p>
                             </div>
                         <?php } ?>

@@ -14,7 +14,7 @@ include('includes/head_shop.php');
 
 
 if (empty($_SESSION['user_id'])) {
-    header('Location: index_.php');
+    header('Location: login.php');
     exit;
 }
 
@@ -44,16 +44,16 @@ $total_price += ($product["prijs"]*$product["quantity"]);*/
                             <form action="#" method="post">
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
-                                        <input type="text" class="form-control" id="first_name" value="" placeholder="First Name" required>
+                                        <input type="text" class="form-control" id="first_name" value="" placeholder="Voornaam" required>
                                     </div>
                                     <div class="col-md-6 mb-3">
-                                        <input type="text" class="form-control" id="last_name" value="" placeholder="Last Name" required>
+                                        <input type="text" class="form-control" id="last_name" value="" placeholder="Achternaam" required>
                                     </div>
                                     <div class="col-12 mb-3">
-                                        <input type="text" class="form-control" id="company" placeholder="Company Name" value="">
+                                        <input type="text" class="form-control" id="company" placeholder="Bedrijfsnaam" value="">
                                     </div>
                                     <div class="col-12 mb-3">
-                                        <input type="email" class="form-control" id="email" placeholder="Email" value="">
+                                        <input type="email" class="form-control" id="email" placeholder="E-mailadres" value="">
                                     </div>
                                     <div class="col-12 mb-3">
                                         <select class="w-100" id="country">
@@ -124,7 +124,7 @@ $total_price += ($product["prijs"]*$product["quantity"]);*/
                                 <a href="#" class="btn amado-btn w-100"><?php (count($cart) > 0 ? require 'pay-with-paypal.php' : '') ?>Checkout</a>
                             </div><?php } else { ?>
                                 <div class="form-group">
-                                    <p style="color: #f55a22">Your shopping cart is empty you don't have selected any of the product to purchase <a
+                                    <p style="color: #8d1fea">Your shopping cart is empty you don't have selected any of the product to purchase <a
                                                 href="shop.php">click here</a> to add products. </p>
                                 </div>
                             <?php } ?>

@@ -4,25 +4,32 @@ require_once("includes/header.php");
 
 
 $user = new User();
+$the_message = '';
 
 if(isset($_POST['submit'])) {
-    if ($user) {
+    $password = (string) ($_POST['password'] ?? '');
+    $password_confirmation = (string) ($_POST['password_confirmation'] ?? '');
+
+    if ($password === '' || $password !== $password_confirmation) {
+        $the_message = 'Passwords do not match.';
+    } else {
         $user->username = $_POST['username'];
         $user->first_name = $_POST['first_name'];
         $user->last_name = $_POST['last_name'];
         $user->email = $_POST['email'];
-        $user->password = $_POST['password'];
-        $user->role = $_POST['role'];
-        //    $user->set_file($_FILES['user_image']);
-        //     $user->save_user_and_image();
-        //    redirect('users.php');
+        $user->password = password_hash($password, PASSWORD_DEFAULT);
+        $user->role = 0;
 
-        if (empty($_FILES['user_image'])) {
+        if (empty($_FILES['user_image']['name'])) {
             $user->save();
         } else {
             $user->set_file($_FILES['user_image']);
-            $user->save_user_and_image();
-            $user->save();
+            if (!$user->save_user_and_image()) {
+                $the_message = join('<br>', $user->errors);
+            }
+        }
+
+        if ($the_message === '') {
             redirect('login.php');
         }
     }
@@ -43,12 +50,13 @@ if(isset($_POST['submit'])) {
                 <div class="card-body p-0">
                     <!-- Nested Row within Card Body -->
                     <div class="row">
-                        <div class="col-lg-6 d-none d-lg-block"><img  src="img/logo_gts.png" alt=""></div>
+                        <div class="col-lg-6 d-none d-lg-block"><img src="img/logo_evva_hot.svg" alt="EVVA"></div>
                        <div class="col-lg-6 d-none d-lg-block ml-15 mt-70 position-absolute text-center"><span  id="output"></span></div>
                     <div class="col-lg-6">
                             <div class="">
                                 <div class="text-center pt-3 pb-0">
-                                    <h4  style="color: #f55a22">Create Account</h4>
+                                <h4  style="color: #8d1fea">Create Account</h4>
+                                <?php if ($the_message !== ''): ?><p class="text-danger"><?php echo htmlspecialchars($the_message, ENT_QUOTES, 'UTF-8'); ?></p><?php endif; ?>
                                 </div>
 
     <form action="register.php" method="post" enctype="multipart/form-data">
@@ -57,13 +65,13 @@ if(isset($_POST['submit'])) {
                         <form>
                             <div class="form-group">
 
-                                <input type="text" name="username" class="form-control type="text" placeholder="Uw usernaam" ">
+                                <input type="text" name="username" class="form-control" placeholder="Uw gebruikersnaam">
                             </div>
                             <div class="form-row">
                                 <div class="col-md-6">
                                     <div class="form-group">
 
-                                        <input class="form-control "  type="text" name="first_name" placeholder="Uw voornaam" />
+                                <input class="form-control" type="text" name="first_name" placeholder="Uw voornaam" />
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -79,35 +87,31 @@ if(isset($_POST['submit'])) {
                             <div class="form-row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input class="form-control " name="password" type="password" placeholder="Uw password" />
+                                <input class="form-control" name="password" type="password" placeholder="Uw wachtwoord" />
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input class="form-control " name="password" type="password" placeholder="Confirm password" />
+                                <input class="form-control" name="password_confirmation" type="password" placeholder="Bevestig uw wachtwoord" />
                                     </div>
                                 </div>
                             </div>
 
 
-                            <!--value="3" role 'klant' id=3 -->
-                            <input type="hidden" name="role" value="3" class="form-control">
-
-
-
-
                                     <div class="form-group" >
-                                       <input type="file" name="user_image" id="file" class="form-control">
+                                       <input type="file" name="user_image" id="file" class="form-control"
+                                              accept="image/jpeg,image/png,image/gif,image/webp">
+                                       <small class="form-text text-muted">Maximaal 5 MB. JPG, PNG, GIF of WEBP.</small>
                                     </div>
 
                             <div class="form-group  mb-0">
-                                <input class="btn text-white btn-user btn-block rounded-0" style="background-color: #f55a22" type="submit" value="Create Account" name="submit"
+                                <input class="btn text-white btn-user btn-block rounded-0" style="background-color: #8d1fea" type="submit" value="Create Account" name="submit"
                                        class="form-control">
                             </div>
 
                         </form>
                     </div>
-                    <div class="" style="color: #f55a22">
+                    <div class="" style="color: #8d1fea">
                         <div class="small"><a href="login.php">Have an account? Go to login</a></div>
                     </div>
                             </div>
@@ -118,9 +122,19 @@ if(isset($_POST['submit'])) {
                             function handleFileSelect(evt) {
                                 var file = evt.target.files; // FileList object
                                 var f = file[0];
+                                if (!f) {
+                                    return;
+                                }
+                                if (f.size > 5 * 1024 * 1024) {
+                                    alert("De afbeelding mag maximaal 5 MB groot zijn.");
+                                    evt.target.value = "";
+                                    return;
+                                }
                                 // Only process image files.
                                 if (!f.type.match('image.*')) {
                                     alert("Image only please....");
+                                    evt.target.value = "";
+                                    return;
                                 }
                                 var reader = new FileReader();
                                 // Closure to capture the file information.

@@ -5,10 +5,10 @@ session_start();
 include ('includes/PayPal.php');
 
 
-/*if (empty($_SESSION['user_id'])) {
-    header('Location: index_.php');
+if (empty($_SESSION['user_id'])) {
+    header('Location: login.php');
     exit;
-}*/
+}
 
 
 if (!empty($_GET['payment_id']) && !empty($_GET['payer_id']) && !empty($_GET['token'])) {

@@ -1,4 +1,7 @@
 <?php
+header('Location: shop.php');
+exit;
+/*
 require __DIR__ . '/lib/PayPal.php';
 
 if (empty($_SESSION['user_id'])) {
@@ -10,6 +13,7 @@ $app = new PayPalDemo();
 // fetch all products
 $products = $app->getAllProducts();
 $user = $app->getUserDetails($_SESSION['user_id']);
+*/
 ?>
 
 
@@ -20,7 +24,8 @@ $user = $app->getUserDetails($_SESSION['user_id']);
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>PHP MySQL PayPal JavaScript Express Checkout Demo</title>
+    <title>Productbeheer | EVVA</title>
+    <meta name="robots" content="noindex, nofollow">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">

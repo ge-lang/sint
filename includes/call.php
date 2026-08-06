@@ -5,17 +5,20 @@
 
 
 <section id="call-to-action" class="wow fadeInUp">
-    <form action="mailto:info@wtsvoip.com" name="sentMessage" class="well" id="contactForm"  novalidate>
+    <form action="mailto:info@evva.com" name="sentMessage" class="well" id="contactForm"  novalidate>
     <div class="container">
         <div class="row">
             <div class="col-lg-6 text-center text-lg-left">
-                <h3 class="cta-title">Vragen over de Gergel Telecom Solutions diensten?</h3>
-                <p class="cta-text">Contacteer ons via het contactformulier voor extra info, een analyse of hulp</p>
+                <h3 class="cta-title"><?php echo evva_text('cta_title'); ?></h3>
+                <p class="cta-text"><?php echo evva_text('cta_text'); ?></p>
 
-                <button type="submit" class="btn amado-btn">Contact Ons</button>
+                <div class="evva-cta-actions">
+                    <a class="evva-gradient-button" href="klant_worden.php"><span><?php echo evva_text('client'); ?></span></a>
+                    <a class="evva-gradient-button" href="partner_worden.php"><span><?php echo evva_text('partner'); ?></span></a>
+                </div>
             </div>
             <div class="col-lg-6 cta-btn-container text-center">
-                <img src="img/sm.jpg" alt="">
+                <img src="img/evva-contact-support.png" alt="EVVA support">
             </div>
         </div>
 

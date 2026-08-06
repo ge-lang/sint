@@ -1,4 +1,5 @@
 <?php require_once("init.php");
+require_admin();
 ob_start(); //output buffering
 ?>
 <!DOCTYPE html>

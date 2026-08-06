@@ -10,13 +10,13 @@ $teamlead = Teamlead::find_by_id($_GET['id']);
 
 if (isset($_POST['update'])) {
     if ($teamlead) {
-        $teamlead->title = $_POST['naam'];
-        $teamlead->title = $_POST['achternaam'];
-        $teamlead->title = $_POST['positie'];
+        $teamlead->naam = $_POST['naam'];
+        $teamlead->achternaam = $_POST['achternaam'];
+        $teamlead->positie = $_POST['positie'];
 
 
-        if (empty($_FILES['file'])) {
-            $teamlead->save();
+        if (empty($_FILES['file']) || $_FILES['file']['error'] === UPLOAD_ERR_NO_FILE) {
+            $teamlead->update();
         } else {
             $teamlead->set_team_file($_FILES['file']);
             $teamlead->save_team();

@@ -12,12 +12,11 @@ if (isset($_POST['update'])) {
     if ($dienst) {
         $dienst->title = $_POST['title'];
 
-        if (empty($_FILES['file'])) {
-            $dienst->save();
+        if (empty($_FILES['file']) || $_FILES['file']['error'] === UPLOAD_ERR_NO_FILE) {
+            $dienst->update();
         } else {
             $dienst->set_dienst_file($_FILES['file']);
             $dienst->save_dienst();
-            $dienst->save();
             redirect("edit_dienst.php?id={$dienst->id}");
         }
     }
@@ -55,7 +54,7 @@ if (isset($_POST['update'])) {
                     </div>
                     <div class="col-4 border-danger border-left">
                         <img class="img-fluid"
-                             src="<?php echo $dienst->picture_path(); ?>" height="62" width="62" alt="">
+                             src="<?php echo htmlspecialchars($dienst->picture_path(), ENT_QUOTES, 'UTF-8'); ?>" height="62" width="62" alt="<?php echo htmlspecialchars($dienst->title, ENT_QUOTES, 'UTF-8'); ?>">
                     </div>
                 </div>
             </form>

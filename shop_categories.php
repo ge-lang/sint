@@ -11,82 +11,32 @@ include('includes/head_shop.php');
 include('includes/shop_sidebar_area.php');
 ?>
 
-
 <?php
-
-
-$products = Product::find_all_by_categorie_id($_GET['id']);
-
-?>
-
-
-
-
-<?php
-$_SESSION['shopping_cart']=isset($_SESSION['shopping_cart']) ? $_SESSION['shopping_cart'] : array();
+// Безопасно принимаем ID категории из адресной строки
+if (isset($_GET['id']) && !empty($_GET['id'])) {
+    $cat_id = (int)$_GET['id']; // Принудительно делаем числом для защиты
+    $products = Product::find_all_by_categorie_id($cat_id);
+} else {
+    $products = []; // Если ID не передан, создаем пустой массив, чтобы страница не падала
+}
 ?>
 
 <?php
-// Enter your Host, username, password, database below.
-$in = mysqli_connect("localhost:3308","root","","sint");
-if (mysqli_connect_errno()){
-    echo "Failed to connect to MySQL: " . mysqli_connect_error();
-    die();
-}
-
-
-//include('in.php');
-$status="";
-if (isset($_POST['code']) && $_POST['code']!=""){
-    $code = $_POST['code'];
-    $result = mysqli_query(
-        $in,
-        "SELECT * FROM `products` WHERE `code`='$code'"
-    );
-    $row = mysqli_fetch_assoc($result);
-    $title = $row['title'];
-    $code = $row['code'];
-    $prijs= $row['prijs'];
-    $foto = $row['foto'];
-
-    $cartArray = array(
-        $code=>array(
-            'title'=>$title,
-            'code'=>$code,
-            'prijs'=>$prijs,
-            'quantity'=>1,
-            'foto'=>$foto)
-    );
-
-    if(empty($_SESSION["shopping_cart"])) {
-        $_SESSION["shopping_cart"] = $cartArray;
-        $status = "<div>Product is added to your cart!</div>";
-    }else{
-        $array_keys = array_keys($_SESSION["shopping_cart"]);
-        if(in_array($code,$array_keys)) {
-            $status = "<div> Product is already added to your cart!</div>";
-        } else {
-            $_SESSION["shopping_cart"] = array_merge(
-                $_SESSION["shopping_cart"],
-                $cartArray
-            );
-            $status = "<div >Product is added to your cart!</div>";
-        }
-
-    }
-}
+// Cart mutations are handled by shopping-cart.php.
 ?>
 
 
 <div class="amado_product_area section-padding-100">
     <div class="container-fluid">
 
+        <h1 class="sr-only">Producten per categorie</h1>
+
         <div class="row">
             <div class="col-12">
                 <div class="product-topbar d-xl-flex align-items-end justify-content-between">
                     <!-- Total Products -->
                     <div class="total-products">
-                        <p>Showing 1-8 0f 25</p>
+                        <p>Showing <?php echo count($products); ?> products</p>
                         <div class="view d-flex">
                             <a href="#"><i class="fa fa-th-large" aria-hidden="true"></i></a>
                             <a href="#"><i class="fa fa-bars" aria-hidden="true"></i></a>
@@ -128,11 +78,13 @@ if (isset($_POST['code']) && $_POST['code']!=""){
                 <div class="col-12 col-sm-6 col-md-12 col-xl-6">
                     <div class="single-product-wrapper">
                         <!-- Product Image -->
+                        <a href="product-details.php?id=<?php echo $product->id; ?>" class="product-card-link">
                         <div class="product-img text-center">
-                            <img  src="<?php echo 'admin' . DS . $product->picture_path(); ?>" class="w-75"   alt="">
+                            <img  src="<?php echo 'admin' . DS . $product->picture_path(); ?>" class="w-75" alt="<?php echo htmlspecialchars($product->title, ENT_QUOTES, 'UTF-8'); ?>">
                             <!-- Hover Thumb -->
-                            <img class="hover-img" src="<?php echo 'admin' . DS . $product->picture_path(); ?>" alt="">
+                            <img class="hover-img" src="<?php echo 'admin' . DS . $product->picture_path(); ?>" alt="" aria-hidden="true">
                         </div>
+                        </a>
 
                         <!-- Product Description -->
                         <div class="product-description d-flex align-items-center justify-content-between">
@@ -154,19 +106,6 @@ if (isset($_POST['code']) && $_POST['code']!=""){
                                     <i class="fa fa-star" aria-hidden="true"></i>
                                 </div>
 
-
-
-                                <!-- Add to Cart Form -->
-                                <!--<form action="" class="cart clearfix" method="post">
-                                     <a href="cart.php" data-toggle="tooltip" data-placement="left" title="Add to Cart"> <button type="submit" name="addtocart" value="5" class="btn amado-btn"><img src="img/core-img/cart.png" alt=""></button></a>
-                                </form>-->
-                                <!-- Add to Cart Form -->
-                                <!--<form action="" class="cart clearfix" method="post">
-                                    <input type='hidden' name='code' value="<?/*= $product->code; */?>" />
-
-
-                                    <a href="cart.php" data-toggle="tooltip" data-placement="left" title="Add to Cart"> <button type="submit" name="addtocart" value="5" class="btn amado-btn"><i class="fa fa-shopping-cart"></i></button></a>
-                                </form>-->
 
 
                             </div>

@@ -1,23 +1,25 @@
 
 <?php
-include ('includes/header.php');
-
 require_once("admin/includes/init.php");
 
+$app = new PayPal();
+$product_id = isset($_GET['id']) ? (int) $_GET['id'] : 0;
+$product = $product_id > 0 ? $app->get_product_details($product_id) : [];
 
+if (empty($product)) {
+    http_response_code(404);
+    header('Location: shop.php');
+    exit;
+}
+
+include ('includes/header.php');
 ?>
 
 <?php
 include('includes/head_shop.php');
 ?>
 
-<?php
-
-$app = new PayPal();
-// fetch all products
-$product = $app->get_product_details($_GET['id']);
-$user = $app->getUserDetails($_SESSION['user_id']);
-?>
+<?php $product_image = 'admin/img/products/' . rawurlencode($product['foto']); ?>
 
 
 
@@ -45,34 +47,34 @@ $user = $app->getUserDetails($_SESSION['user_id']);
                         <div class="single_product_thumb">
                             <div id="product_details_slider" class="carousel slide" data-ride="carousel">
                                 <ol class="carousel-indicators">
-                                    <li class="active" data-target="#product_details_slider" data-slide-to="0" style="background-image: url(<?php echo $product["foto"]; ?>);">
+                                    <li class="active" data-target="#product_details_slider" data-slide-to="0" style="background-image: url('<?php echo $product_image; ?>');">
                                     </li>
-                                    <li data-target="#product_details_slider" data-slide-to="1" style="background-image: url(<?php echo $product["foto"]; ?>);">
+                                    <li data-target="#product_details_slider" data-slide-to="1" style="background-image: url('<?php echo $product_image; ?>');">
                                     </li>
-                                    <li data-target="#product_details_slider" data-slide-to="2" style="background-image: url(<?php echo $product["foto"]; ?>);">
+                                    <li data-target="#product_details_slider" data-slide-to="2" style="background-image: url('<?php echo $product_image; ?>');">
                                     </li>
-                                    <li data-target="#product_details_slider" data-slide-to="3" style="background-image: url(<?php echo $product["foto"]; ?>);">
+                                    <li data-target="#product_details_slider" data-slide-to="3" style="background-image: url('<?php echo $product_image; ?>');">
                                     </li>
                                 </ol>
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
-                                        <a class="gallery_img" href="admin/img/products/<?php echo $product["foto"]; ?>">
-                                            <img class="d-block w-100" src="admin/img/products/<?php echo $product["foto"]; ?>" alt="First slide">
+                                        <a class="gallery_img" href="<?php echo $product_image; ?>">
+                                            <img class="d-block w-100" src="<?php echo $product_image; ?>" alt="First slide">
                                         </a>
                                     </div>
                                     <div class="carousel-item">
-                                        <a class="gallery_img" href="admin/img/products/<?php echo $product["foto"]; ?>">
-                                            <img class="d-block w-100" src="admin/img/products/<?php echo $product["foto"]; ?>" alt="Second slide">
+                                        <a class="gallery_img" href="<?php echo $product_image; ?>">
+                                            <img class="d-block w-100" src="<?php echo $product_image; ?>" alt="Second slide">
                                         </a>
                                     </div>
                                     <div class="carousel-item">
-                                        <a class="gallery_img" href="admin/img/products/<?php echo $product["foto"]; ?>">
-                                            <img class="d-block w-100" src="admin/img/products/<?php echo $product["foto"]; ?>" alt="Third slide">
+                                        <a class="gallery_img" href="<?php echo $product_image; ?>">
+                                            <img class="d-block w-100" src="<?php echo $product_image; ?>" alt="Third slide">
                                         </a>
                                     </div>
                                     <div class="carousel-item">
-                                        <a class="gallery_img" href="admin/img/products/<?php echo $product["foto"]; ?>">
-                                            <img class="d-block w-100" src="admin/img/products/<?php echo $product["foto"]; ?>" alt="Fourth slide">
+                                        <a class="gallery_img" href="<?php echo $product_image; ?>">
+                                            <img class="d-block w-100" src="<?php echo $product_image; ?>" alt="Fourth slide">
                                         </a>
                                     </div>
                                 </div>

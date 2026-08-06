@@ -37,7 +37,8 @@ class Database
 
      /** 3 BEVEILIGING/SECURITY -> sql injecties vermijden**/
      public function escape_string($string){
-         $escaped_string = $this->connection->real_escape_string($string);
+         // PHP 8.1 deprecates passing null to mysqli string methods.
+         $escaped_string = $this->connection->real_escape_string((string) ($string ?? ''));
          return $escaped_string;
         }
 

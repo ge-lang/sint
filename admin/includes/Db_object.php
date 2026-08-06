@@ -20,7 +20,7 @@ class Db_object
 
 
     public static function find_by_id($id){
-        /*global $database;*/
+        $id = (int) $id;
         $the_result_array = static::find_this_query("SELECT * FROM " . static::$db_table . " WHERE id=$id LIMIT 1");
         return !empty($the_result_array) ? array_shift($the_result_array) : false;
     }
@@ -74,7 +74,7 @@ class Db_object
 
         $sql = "UPDATE " . static::$db_table . " SET ";
         $sql .= implode(", ", $properties_assoc);
-        $sql .= " WHERE id = " .$database->escape_string($this->id);
+        $sql .= " WHERE id = " . (int) $this->id;
 
         $database->query($sql);
         return (mysqli_affected_rows($database->connection)== 1) ? true : false;
@@ -84,7 +84,7 @@ class Db_object
         global $database;
 
         $sql = "DELETE FROM " . static::$db_table . " ";
-        $sql .= "WHERE id= " . $database->escape_string($this->id);
+        $sql .= "WHERE id= " . (int) $this->id;
         $sql .= " LIMIT 1";
 
         $database->query($sql);

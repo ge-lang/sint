@@ -9,7 +9,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-database"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">GTS-Admin</div>
+        <div class="sidebar-brand-text mx-3">EVVA-Admin</div>
     </a>
 
 
@@ -121,14 +121,14 @@
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-shopping-basket"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">GTS-Shop</div>
+        <div class="sidebar-brand-text mx-3">EVVA-Shop</div>
     </a>
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../gts_index.php">
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-home"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">GTS-Home</div>
+        <div class="sidebar-brand-text mx-3">EVVA-Home</div>
     </a>
 
 

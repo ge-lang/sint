@@ -12,8 +12,8 @@
             <!-- Newsletter Form -->
             <div class="col-12 col-lg-6 col-xl-5">
                 <div class="newsletter-form mb-100">
-                    <form action="mailto:info@wtsvoip.com" method="post">
-                        <input type="email" name="email" class="nl-email" placeholder="Uw E-mail">
+                    <form action="mailto:info@evva.com" method="post">
+                        <input type="email" name="email" class="nl-email" placeholder="Uw e-mailadres" aria-label="Uw e-mailadres" required>
                         <input type="submit" value="Subscribe">
                     </form>
                 </div>

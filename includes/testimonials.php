@@ -1,45 +1,44 @@
-<?php ?>
+<?php $is_en = (($evva_lang ?? $_SESSION['evva_lang'] ?? 'nl') === 'en'); ?>
 
 <!--==========================
-     Testimonials Section
+     Trust Section
    ============================-->
 <section id="testimonials" class="wow fadeInUp">
     <div class="container">
         <div class="section-header">
-            <h2>Beoordelingen</h2>
-            <p>Door onze jarenlange gedrevenheid en inzet, kunnen wij dan ook met trots vertellen dat reeds meer dan 10.000 klanten de weg naar goedkopere providers voor telecom diensten en leveranciers voor energiediensten gevonden hebben.
-                Onze grootste doelstelling is dan ook "U" als klant tevreden te stellen - daarom staat dan ook ons vakkundig team altijd voor U klaar!</p>
+            <h2><?php echo $is_en ? 'WHY CHOOSE EVVA?' : 'WAAROM KIEZEN VOOR EVVA?'; ?></h2>
+            <p><?php echo $is_en ? 'We make complex choices clear and guide you personally through telecom, energy and smart technology.' : 'Wij maken complexe keuzes overzichtelijk en begeleiden u persoonlijk bij telecom, energie en slimme technologie.'; ?></p>
         </div>
         <div class="owl-carousel testimonials-carousel">
 
             <div class="testimonial-item">
-                <p>Mmmmmmmm</p>
-                <h3>Mmmmm</h3>
-                <h4>Bbbbr</h4>
+                <p><?php echo $is_en ? 'Clear comparisons based on your needs.' : 'Heldere vergelijking van aanbiedingen op basis van uw behoeften.'; ?></p>
+                <h3><?php echo $is_en ? 'Personal advice' : 'Persoonlijk advies'; ?></h3>
+                <h4>EVVA</h4>
             </div>
 
             <div class="testimonial-item">
-                <p>Mmmmmmmm</p>
-                <h3>Fffff</h3>
-                <h4>Cccc</h4>
+                <p><?php echo $is_en ? 'A practical approach to telecom, internet and energy.' : 'Een praktische aanpak voor telecom, internet en energie.'; ?></p>
+                <h3><?php echo $is_en ? 'Independent choice' : 'Onafhankelijke keuze'; ?></h3>
+                <h4>EVVA</h4>
             </div>
 
             <div class="testimonial-item">
-                <p>Mmmmmmmm</p>
-                <h3>Kkkkh</h3>
-                <h4>Mmmmm</h4>
+                <p><?php echo $is_en ? 'From your first question to the right solution, we stay available.' : 'Van eerste vraag tot passende oplossing: wij blijven bereikbaar.'; ?></p>
+                <h3><?php echo $is_en ? 'Support without hassle' : 'Begeleiding zonder zorgen'; ?></h3>
+                <h4>EVVA</h4>
             </div>
 
             <div class="testimonial-item">
-                <p>Mmmmmmmm</p>
-                <h3>Wwww</h3>
-                <h4>Aaaa</h4>
+                <p><?php echo $is_en ? 'Modern products and services in one trusted place.' : 'Moderne producten en diensten op één herkenbare plek.'; ?></p>
+                <h3><?php echo $is_en ? 'Everything in one overview' : 'Alles overzichtelijk'; ?></h3>
+                <h4>EVVA</h4>
             </div>
 
             <div class="testimonial-item">
-                <p>Mmmmmmmm</p>
-                <h3>Llll</h3>
-                <h4>Iiiii</h4>
+                <p><?php echo $is_en ? 'We speak clearly and take time to understand your situation.' : 'Wij spreken duidelijke taal en nemen de tijd voor uw situatie.'; ?></p>
+                <h3><?php echo $is_en ? 'Clear communication' : 'Duidelijke communicatie'; ?></h3>
+                <h4>EVVA</h4>
             </div>
 
         </div>

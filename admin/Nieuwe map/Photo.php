@@ -38,7 +38,12 @@ class Photo extends Db_object
             $this->errors[] = $this->upload_errors_array[$file['error']];
             return false;
         }else{
-            $this->filename = basename($file['name']);
+            $upload_error = validate_image_upload($file);
+            if ($upload_error) {
+                $this->errors[] = $upload_error;
+                return false;
+            }
+            $this->filename = preg_replace('/[^A-Za-z0-9._-]/', '_', basename($file['name']));
             $this->tmp_path = $file['tmp_name'];
             $this->type = $file['type'];
             $this->size=$file['size'];

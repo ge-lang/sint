@@ -17,10 +17,9 @@ if (isset($_POST['update'])) {
         $product->title = $_POST['title'];
         $product->description = $_POST['description'];
         $product->prijs = $_POST['prijs'];
+        if (empty($_FILES['foto']) || $_FILES['foto']['error'] === UPLOAD_ERR_NO_FILE) {
         $product->update();
-        if(empty($_FILES['foto'])) {
-        $product->save();
-    }else {
+    } else {
         $product->set_file($_FILES['foto']);
 
         $product->save();

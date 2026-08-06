@@ -2,10 +2,10 @@
 
 $currency = '&euro; '; //Currency Character or code
 
-define('HOST', 'localhost:3308'); // Database host name ex. localhost
-define('USER', 'root'); // Database user. ex. root ( if your on local server)
-define('PASSWORD', ''); // Database user password  (if password is not set for user then keep it empty )
-define('DATABASE', 'sint'); // Database name
+define('HOST', getenv('DB_HOST') ?: 'db');
+define('USER', getenv('DB_USER') ?: 'root');
+define('PASSWORD', getenv('DB_PASSWORD') ?: 'root');
+define('DATABASE', getenv('DB_NAME') ?: 'sint');
 
 function DB()
 {

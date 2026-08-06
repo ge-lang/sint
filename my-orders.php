@@ -9,11 +9,10 @@ include('includes/head_shop.php');
 <?php
 
 
-/*
 if (empty($_SESSION['user_id'])) {
-    header('Location: index.php');
+    header('Location: login.php');
     exit;
-}*/
+}
 
 $app = new PayPal();
 
@@ -53,7 +52,7 @@ $orders = $app->getOrders($user['id']);
                             ?>
                             <div class="panel panel-info pb-5">
                                 <div class="panel-heading">
-                                    <h5 class="panel-title" style="color: #f55a22">
+                                    <h5 class="panel-title" style="color: #8d1fea">
                                         Order @ <?php echo $order['created_at'] ?>
                                     </h5>
                                 </div>

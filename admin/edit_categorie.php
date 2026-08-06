@@ -12,8 +12,8 @@ if (isset($_POST['update'])) {
     if ($categorie) {
         $categorie->title = $_POST['title'];
 //        $categorie->update();
-        if (empty($_FILES['file'])) {
-            $categorie->save();
+        if (empty($_FILES['file']) || $_FILES['file']['error'] === UPLOAD_ERR_NO_FILE) {
+            $categorie->update();
         } else {
             $categorie->set_categorie_file($_FILES['file']);
             $categorie->save_categorie();

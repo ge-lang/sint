@@ -12,16 +12,16 @@
 }
 .product_wrapper .buy {
     text-transform: uppercase;
-    background: #F68B1E;
-    border: 1px solid #F68B1E;
+    background: #f531b4;
+    border: 1px solid #f531b4;
     cursor: pointer;
     color: #fff;
     padding: 8px 40px;
     margin-top: 10px;
 }
 .product_wrapper .buy:hover {
-    background: #f17e0a;
-    border-color: #f17e0a;
+    background: #8d1fea;
+    border-color: #8d1fea;
 }
 .message_box .box{
     margin: 10px 0px;
@@ -45,7 +45,7 @@
 .cart_div span {
     font-size: 12px;
     line-height: 14px;
-    background: #F68B1E;
+    background: #f531b4;
     padding: 2px;
     border: 2px solid #fff;
     border-radius: 50%;
@@ -66,4 +66,11 @@
 }
 .cart .remove:hover {
     text-decoration:underline;
+}
+
+.product_wrapper .buy,
+button[type="submit"],
+input[type="submit"] {
+    background: linear-gradient(135deg, #3ad5f6, #8d1fea 52%, #f531b4);
+    border-color: #8d1fea;
 }

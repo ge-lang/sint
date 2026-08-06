@@ -15,6 +15,7 @@ class Categorie extends Db_object
     public $size;
 
     public $tmp_path;
+    public $previous_foto;
     public $upload_directory = 'img'.DS.'categories';
     public $errors = array();
     public $upload_errors_array = array(
@@ -37,7 +38,13 @@ class Categorie extends Db_object
             $this->errors[] = $this->upload_errors_array[$file['error']];
             return false;
         } else {
-            $this->foto = basename($file['name']);
+            $upload_error = validate_image_upload($file);
+            if ($upload_error) {
+                $this->errors[] = $upload_error;
+                return false;
+            }
+            $this->previous_foto = $this->foto;
+            $this->foto = preg_replace('/[^A-Za-z0-9._-]/', '_', basename($file['name']));
             $this->tmp_path = $file['tmp_name'];
         }
     }
@@ -45,7 +52,23 @@ class Categorie extends Db_object
     public function save_categorie()
     {
         if ($this->id) {
-            $this->update();
+            if (!empty($this->errors)) {
+                return false;
+            }
+            if (!empty($this->tmp_path)) {
+                $target_path = SITE_ROOT . DS . "admin" . DS . $this->upload_directory . DS . $this->foto;
+                if (!move_uploaded_file($this->tmp_path, $target_path)) {
+                    $this->errors[] = "This folder has no write rights!";
+                    return false;
+                }
+                $old_path = SITE_ROOT . DS . "admin" . DS . $this->upload_directory . DS . $this->previous_foto;
+                $updated = $this->update();
+                if ($updated && $this->previous_foto && $this->previous_foto !== $this->foto && is_file($old_path)) {
+                    unlink($old_path);
+                }
+                return $updated;
+            }
+            return $this->update();
         } else {
             if (!empty($this->errors)) {
                 return false;

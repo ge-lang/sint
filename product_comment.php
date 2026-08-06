@@ -96,7 +96,7 @@ $user = $app->getUserDetails($_SESSION['user_id']);
     </div>
 
     <!-- Post Content Column -->
-    <div class="col-lg-8  text-dark" style="background-color: #f55a22">
+    <div class="col-lg-8  text-dark" style="background-color: #8d1fea">
         <!-- Author -->
         <p class="lead ">by     <span><?php echo $user['username'] ?></span></p>
         <hr>
@@ -126,7 +126,7 @@ $user = $app->getUserDetails($_SESSION['user_id']);
         <?php foreach($comments as $comment): ?>
             <!-- Single Comment -->
             <div class="media mb-4 ">
-                <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+                <img class="d-flex mr-3 rounded-circle" src="img/logo_evva_mix.svg" alt="EVVA gebruiker">
                 <div class="media-body ">
                     <h5 class="mt-0 "><strong><?php echo $comment->author; ?></strong> over <em> <?php echo $product->title; ?></em></h5>
                     <p><?php echo $comment->body; ?></p>

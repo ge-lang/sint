@@ -1,5 +1,6 @@
 
 <?php
+
 include ('includes/header.php');
 ?>
 
@@ -33,7 +34,9 @@ $categories = Categorie::find_this_query($sql);
 
 
 
-    <!-- Product Catagories Area Start -->
+    <h1 class="sr-only">EVVA Smart Shop</h1>
+
+    <!-- Product Categories Area Start -->
     <div class="products-catagories-area clearfix">
         <div class="amado-pro-catagory clearfix">
 
@@ -43,7 +46,7 @@ $categories = Categorie::find_this_query($sql);
             <?php foreach ($categories as $categorie): ?>
                 <div class="single-products-catagory clearfix">
                     <a href="shop_categories.php?id=<?php echo $categorie->id; ?>">
-                        <img src="<?php echo 'admin' . DS . $categorie->picture_path(); ?>" alt="">
+                        <img src="<?php echo 'admin' . DS . $categorie->picture_path(); ?>" alt="<?php echo htmlspecialchars($categorie->title, ENT_QUOTES, 'UTF-8'); ?>">
                         <!-- Hover Content -->
                         <div class="hover-content">
                             <div class="line"></div>
@@ -101,6 +104,8 @@ $categories = Categorie::find_this_query($sql);
 
 
 
+
+</div>
 
 <?php
 include ('includes/Newsletter.php');

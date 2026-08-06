@@ -21,7 +21,6 @@ include('includes/shop_sidebar_area.php');
 $app = new PayPal();
 // fetch all products
 $products = $app->getAllProducts();
-$user = $app->getUserDetails($_SESSION['user_id']);
 
 
 
@@ -39,12 +38,14 @@ $user = $app->getUserDetails($_SESSION['user_id']);
 <div class="amado_product_area section-padding-100">
     <div class="container-fluid">
 
+        <h1 class="sr-only">EVVA Smart Shop producten</h1>
+
         <div class="row">
             <div class="col-12">
                 <div class="product-topbar d-xl-flex align-items-end justify-content-between">
                     <!-- Total Products -->
                     <div class="total-products">
-                        <p>Showing 1-8 0f 25</p>
+                        <p>Showing <?php echo count($products); ?> modern products</p>
                         <div class="view d-flex">
                             <a href="#"><i class="fa fa-th-large" aria-hidden="true"></i></a>
                             <a href="#"><i class="fa fa-bars" aria-hidden="true"></i></a>
@@ -95,11 +96,13 @@ $user = $app->getUserDetails($_SESSION['user_id']);
                 <div class="col-12 col-sm-6 col-md-12 col-xl-6">
                     <div class="single-product-wrapper">
                         <!-- Product Image -->
+                        <a href="product-details.php?id=<?php echo $product['id']; ?>" class="product-card-link">
                         <div class="product-img text-center">
-                            <img  src="admin/img/products/<?php echo $product["foto"]; ?>" class="w-75"   alt="">
+                            <img src="admin/img/products/<?php echo rawurlencode($product["foto"]); ?>" class="w-75" alt="<?php echo htmlspecialchars($product['title'], ENT_QUOTES, 'UTF-8'); ?>">
                             <!-- Hover Thumb -->
-                            <img class="hover-img" src="admin/img/products/<?php echo $product["foto"]; ?>" alt="">
-                        </div>-->
+                            <img class="hover-img" src="admin/img/products/<?php echo rawurlencode($product["foto"]); ?>" alt="" aria-hidden="true">
+                        </div>
+                        </a>
 
                         <!-- Product Description -->
                         <div class="product-description d-flex align-items-center justify-content-between">
@@ -108,7 +111,7 @@ $user = $app->getUserDetails($_SESSION['user_id']);
                                 <div class="line"></div>
                                 <p class="product-price">&euro;<?php echo $product['prijs']  ?></p>
                                 <a href="product-details.php?id=<?php echo $product['id'] ?>">
-                                    <h6><?php echo $product['title'] ?></h6>
+                                    <h6><?php echo htmlspecialchars($product['title'], ENT_QUOTES, 'UTF-8'); ?></h6>
                                 </a>
                             </div>
                             <!-- Ratings & Cart -->
@@ -159,6 +162,8 @@ $user = $app->getUserDetails($_SESSION['user_id']);
 
 
 
+</div>
+
 <?php
 include ('includes/Newsletter.php');
 ?>
@@ -166,4 +171,3 @@ include ('includes/Newsletter.php');
 include ('includes/footer.php');
 
 ?>
-
